@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "devDependencies": {
+    "clean-webpack-plugin": "^4.0.0",
     "cross-env": "^7.0.3",
     "html-webpack-plugin": "^5.5.0",
     "webpack": "^5.76.3",
