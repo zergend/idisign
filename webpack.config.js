@@ -19,13 +19,13 @@ module.exports = {
   },
   output: {
     filename: `./js/${filename('js')}`,
-    path: path.resolve(__dirname, 'app'),
+    path: path.resolve(__dirname, 'dist'),
     publicPath: '',
   },
   devServer: {
     historyApiFallback: true,
     static: {
-      directory: path.resolve(__dirname, 'app'),
+      directory: path.resolve(__dirname, 'dist'),
     },
     open: true,
     compress: true,
@@ -48,7 +48,7 @@ module.exports = {
       patterns: [
         {
           from: path.resolve(__dirname, 'src/assets'),
-          to: path.resolve(__dirname, 'app'),
+          to: path.resolve(__dirname, 'dist'),
         },
       ],
     }),
@@ -71,18 +71,32 @@ module.exports = {
       },
       {
         test: /\.s[ac]ss$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
-      },
-      {
-        test: /\.(gif|png|jpe?g|svg)$/i,
         use: [
           {
-            loader: 'file-loader',
+            loader: MiniCssExtractPlugin.loader,
             options: {
-              name: `./img/${filename('[ext]')}`,
+              publicPath: (resourcePath, context) => {
+                return path.relative(path.dirname(resourcePath), context) + '/';
+              },
             },
           },
+          'css-loader',
+          'sass-loader',
         ],
+      },
+      {
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'img/[name]-[contenthash][ext]',
+        },
+      },
+      {
+        test: /\.(woff|woff2|ttf|otf|eot)$/,
+        type: 'asset/resource',
+        generator: {
+          filename: 'fonts/[name][ext]',
+        },
       },
     ],
   },
