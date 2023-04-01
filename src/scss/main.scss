@@ -1,10 +1,11 @@
-@import 'mixins';
-@import 'fonts';
-@import 'vendor';
-@import 'vars';
-@import 'settings';
+@import "mixins";
+@import "fonts";
+@import "vendor";
+@import "vars";
+@import "settings";
 
 body {
   background-color: aquamarine;
-  background-image: url('../img/keisha-mask.png');
+  background-image: url("../img/keisha-mask.png");
+  color: aliceblue;
 }
