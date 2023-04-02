@@ -20,7 +20,19 @@ const optimization = () => {
   };
 
   if (isProd) {
-    configObj.minimizer = [new CssMinimizerPlugin(), new TerserWebpackPlugin()];
+    configObj.minimizer = [
+      new CssMinimizerPlugin({
+        minimizerOptions: {
+          preset: [
+            "default",
+            {
+              discardComments: { removeAll: true },
+            },
+          ],
+        },
+      }),
+      new TerserWebpackPlugin(),
+    ];
   }
 
   return configObj;
@@ -111,7 +123,7 @@ module.exports = {
         test: /\.(jpe?g|png|gif|svg)$/i,
         type: "asset/resource",
         generator: {
-          filename: "img/[name]-[contenthash][ext]",
+          filename: path.join("img", "[name].[contenthash][ext]"),
         },
       },
       {
