@@ -10,6 +10,9 @@ html {
 
 body {
   scroll-behavior: smooth;
+  background-color: $color-bg;
+  background-image: url("../img/keisha-mask.png");
+  color: $color-text;
 }
 
 img {max-width: 100%;}
@@ -32,5 +35,5 @@ a {
 .container {
   margin: 0 auto;
   padding: 0 15px;
-  // max-width: 1200px;
+  max-width: 1980px;
 }

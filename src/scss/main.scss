@@ -4,8 +4,11 @@
 @import "vars";
 @import "settings";
 
-body {
-  background-color: aquamarine;
-  background-image: url("../img/keisha-mask.png");
-  color: aliceblue;
-}
+@import "./components/header";
+@import "./components/intro";
+@import "./components/skills";
+@import "./components/my-design";
+@import "./components/contact-me";
+@import "./components/features";
+@import "./components/footer";
+
